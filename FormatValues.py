@@ -107,3 +107,20 @@ def validate_phone_number(PhoneNumber): #Could change to include -'s or somethin
         return True
     else:
         return False
+    
+def validate_city(city):
+    if not isinstance(city, str):
+        return False
+    if not city.strip():
+        return False
+    if not all(char.isalpha() or char.isspace() or char in ("'", "-") for char in city):
+        return False
+    return True
+
+def validate_street_address(address): #Pattern of number > Street name followed by a series of potentional endings of street. Could be improved by allowing a continued series of text for an example like 100 Dogtown St - Building 1 Apartment 034
+    pattern = r"^[0-9]+\s+([a-zA-Z]+|[a-zA-Z]+\s[a-zA-Z]+)\s(Street|St|Avenue|Ave|Road|Rd|Boulevard|Blvd|Drive|Dr|Court|Ct|Lane|Ln|Way|Plaza|Terrace|Trail|Parkway|Place|Pl|street|st|avenue|ave|road|rd|boulevard|blvd|drive|dr|court|ct|lane|ln|way|plaza|terrace|trail|parkway|place|pl)$"
+    if re.match(pattern, address):
+        return True
+    else:
+        return False
+    

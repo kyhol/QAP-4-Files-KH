@@ -82,10 +82,20 @@ while True: #Below needs valdations - fixed
             break
         else:
             print("Invalid input. Please enter a valid last name.")
+    while True:
+        StAddress = input("Enter customers street address: ") #Maybe validate - validated
+        if FV.validate_street_address(StAddress):
+            break
+        else:
+            print("Invalid street address. Input valid street address")
+    
+    while True:
+        City = input("Enter customers City: ").title() #Maybe validate - validated
+        if FV.validate_city(City):
+            break
+        else: 
+            print("Invalid input. Please enter a valid city name.")
 
-    StAddress = input("Enter customers street address: ") #Maybe validate
-
-    City = input("Enter customers City: ").title() #Maybe validate
 
     Province = get_valid_province() 
 
