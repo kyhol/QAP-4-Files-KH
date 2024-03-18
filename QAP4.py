@@ -46,7 +46,6 @@ def get_payment_option():
           print("Invalid payment option")
         else:
             return PaymentOption
-        break
 def calculate_monthly_payment(TotalCost, DownPayment):
     if DownPayment > 0:
         TotalCost -= DownPayment
@@ -83,7 +82,7 @@ while True: #Below needs valdations - fixed
         else:
             print("Invalid input. Please enter a valid last name.")
     while True:
-        StAddress = input("Enter customers street address: ") #Maybe validate - validated
+        StAddress = input("Enter customers street address: ").title() #Maybe validate - validated
         if FV.validate_street_address(StAddress):
             break
         else:
@@ -191,38 +190,47 @@ while True: #Below needs valdations - fixed
     FirstPaymentDate = NextMonth 
 
     #Display results
-    print("  --------------------------------------------------------------------")
-    print(f"|                      The One Stop Insurance              *Receipt*|")
+    print(" ---------------------------------------------------------------------")
+    print(f"|                       The One Stop Insurance             *Receipt* |")
     print("|--------------------------------------------------------------------|")
     print(f"|                       Customer Information:                        |")
     print("|--------------------------------------------------------------------|")
-    print(f"|  Name: {Name:<20s}                                      |")
-    print(f"|  Street Address: {StAddress:<20s}                       |")
-    print(f"|  City: {City:<20s}                                      |")
-    print(f"|  Province: {Province:<2s}                                         |")
-    print(f"|  Postal Code: {PostalCode:<6s}                                 |")
+    print(f"|                                                                    |")
+    print(f"|                    Name:           {Name:<20s}            |")
+    print(f"|                    Street Address: {StAddress:<20s}            |")
+    print(f"|                    City:           {City:<20s}            |")
+    print(f"|                    Province:       {Province:<2s}                              |")
+    print(f"|                    Postal Code:    {PostalCode:<6s}                          |")
+    print(f"|                                                                    |")
     print("|--------------------------------------------------------------------|")
-    print("|                              Extras                                |")
+    print("|                              Extras:                               |")
     print("|--------------------------------------------------------------------|")
-    print(f"|  Number of cars: {NumCarsDsp:<4s}                                  |")
-    print(f"|  Extra Liability: {ExtraLiability:<3s}                           |")
-    print(f"|  Glass Coverage: {GlassCoverage:<3s}                               |")
-    print(f"|  Loaner Car: {LoanerCar:<3s}                                        |")
-    print(f"|  Payment Option: {PaymentOption:<8s}                                  |")
+    print(f"|                                                                    |")
+    print(f"|                    Number of cars:         {NumCarsDsp:<4s}                    |")
+    print(f"|                    Extra Liability:        {ExtraLiability:<3s}                     |")
+    print(f"|                    Glass Coverage:         {GlassCoverage:<3s}                     |")
+    print(f"|                    Loaner Car:             {LoanerCar:<3s}                     |")
+    print(f"|                    Payment Option:         {PaymentOption:<8s}                |")
+    print(f"|                                                                    |")
     print("|--------------------------------------------------------------------|")
-    print(f"| Down Payment Amount:{DownPayment}                                                   |")
-    print(f"| Total Cost Breakdown:                                                  |")
-    print(f"| Insurance Premium: {InsurancePremium}                                                  |")
-    print(f"| Total Extra Cost: {TotalExtraCost}                                                  |")
-    print(f"| HST: {HST}                                                   |")
-    print(f"| Total Cost: {TotalCost}                                                    |")
-    print(f"| Monthly Payment Information:                                                   |")
-    print(f"| Monthly Payment Amount: {MonthlyPayment}                                                  |")
-    print(f"| Payment Dates:                                                 |")
-    print(f"| Invoice Date: {InvoiceDate}                                                   |")
-    print(f"| First Payment Date:  {FirstPaymentDate}                                                  |")
-    print(f"|                                                                  |")
-    print("---------------------------------------------------------------------")
+    print("|                        Payment Information:                        |")
+    print("|--------------------------------------------------------------------|")
+    print(f"|                                                                    |")
+    print(f"|                    Down Payment Amount:    {FV.FDollar2(DownPayment):<10s}              |")
+    print(f"|                    Insurance Premium:      {FV.FDollar2(InsurancePremium):<10s}              |")
+    print(f"|                    Total Extra Cost:       {FV.FDollar2(TotalExtraCost):<10s}              |")
+    print(f"|                    HST:                    {FV.FDollar2(HST):<10s}              |")
+    print(f"|                    Total Cost:             {FV.FDollar2(TotalCost):<10s}              |")
+    print(f"|                                                                    |")
+    print(f"|                    Monthly Payment Amount: {FV.FDollar2(MonthlyPayment):<10s}              |")
+    print(f"|                                                                    |")
+    print("|--------------------------------------------------------------------|")
+    print(f"|                           Payment Dates:                           |")
+    print("|--------------------------------------------------------------------|")
+    print(f"|                                                                    |")
+    print(f"| Invoice Date: {InvoiceDate:<10s}            First Payment Date: {FirstPaymentDate:<10s} |")
+    print(f"|                                                                    |")
+    print(" --------------------------------------------------------------------")
 
 
 # HouseKeeping duties
