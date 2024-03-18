@@ -8,9 +8,10 @@
 import datetime
 import FormatValues as FV
 import re
-
+import time
+import sys
 # Define Constants
-
+POLICY_NUMBER = 1944
 BASIC_PREMIUM = 869.00
 DISCOUNT_ADDITIONAL_CARS = 0.25
 COST_EXTRA_LIABILITY = 130.00
@@ -22,11 +23,6 @@ PROVINCES = ['AB', 'BC', 'MB', 'NB', 'NL', 'NS', 'NT', 'NU', 'ON', 'PE', 'QC', '
 PAYMENT_OPTIONS = ['Full', 'Monthly', 'Down Pay']
 
 
-Claims = [
-    {"ClaimNumber": "0001", "ClaimDate": "2023-01-15", "ClaimAmount": 1000.00},
-    {"ClaimNumber": "0002", "ClaimDate": "2023-06-20", "ClaimAmount": 500.00},
-    {"ClaimNumber": "0003", "ClaimDate": "2024-02-10", "ClaimAmount": 750.00}
-]
 
 
 # Define Program Functions
@@ -52,18 +48,12 @@ def calculate_monthly_payment(TotalCost, DownPayment):
     MonthlyPayment = (TotalCost + PROCESSING_FEE_MONTHLY_PAYMENT) / 8
     return MonthlyPayment
 
-def display_previous_claims(claims):
-    print("Previous Claims:")
-    print("Claim #     Claim Date    Amount")
-    print("---------------------------------")
-    for claim in claims:
-        print(f"{claim['ClaimNumber']}{claim['ClaimDate']}${claim['ClaimAmount']:.2f}")
 
 # Main Program 
 
 
     #Inputs
-PolicyNumber = 1944     
+     
 while True: #Below needs valdations - fixed
     print("Enter customer information below:")
     print()
@@ -188,7 +178,6 @@ while True: #Below needs valdations - fixed
     Month = 1 if CurrentDate.month == 12 else CurrentDate.month + 1
     NextMonth = datetime.datetime(Year, Month, 1).strftime("%Y-%m-%d")
     FirstPaymentDate = NextMonth 
-
     #Display results
     print(" ---------------------------------------------------------------------")
     print(f"|                       The One Stop Insurance             *Receipt* |")
@@ -231,12 +220,20 @@ while True: #Below needs valdations - fixed
     print(f"| Invoice Date: {InvoiceDate:<10s}            First Payment Date: {FirstPaymentDate:<10s} |")
     print(f"|                                                                    |")
     print(" --------------------------------------------------------------------")
-
-
+    print(f"|                           Previous Claims                          |")
+    print(" --------------------------------------------------------------------")
 # HouseKeeping duties
+        # Write the conference values to a data file called Conference.dat.
+    for _ in range(4):  # Change to control no. of 'blinks'
+        print('Saving claim data ...', end='\r')
+        time.sleep(.3)  # To create the blinking effect
+        sys.stdout.write('\033[2K\r')  # Clears the entire line and carriage returns
+        time.sleep(.3)
     print()
-    print("Policy data has been saved.")
-    PolicyNumber += 1
+    print("Claim data successfully saved ...", end='\r')
+    time.sleep(1.5)  # To create the blinking effect
+    sys.stdout.write('\033[2K\r')  # Clears the entire line and carriage returns
+    POLICY_NUMBER += 1
     print()
     if input("Do you want to enter another customer? (Y/N): ").upper() != 'Y':
         break
