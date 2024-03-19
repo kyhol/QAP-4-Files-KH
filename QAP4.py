@@ -48,6 +48,18 @@ def calculate_monthly_payment(TotalCost, DownPayment):
     MonthlyPayment = (TotalCost + PROCESSING_FEE_MONTHLY_PAYMENT) / 8
     return MonthlyPayment
 
+def validate_down_payment(DownPayment):
+    if not DownPayment.strip():  # Check if the input is empty or contains only whitespace
+        return False, "Input cannot be empty."
+    
+    if not DownPayment.replace('.', '', 2).isdigit():  # Check if the input is a number (allowing for one decimal point)
+        return False, "Invalid input. Please enter a valid number for the down payment."
+    
+    DownPayment = float(DownPayment)
+    if DownPayment >= 0:
+        return True, DownPayment
+    else:
+        return False, "Down payment must be a positive number."
 
 # Main Program 
 
@@ -156,7 +168,15 @@ while True: #Below needs valdations - fixed
     PaymentOption = get_payment_option()
     while True:
         if PaymentOption == 'Down Pay':
-            DownPayment = float(input("Enter customers down payment amount: "))
+            while True:
+                try:
+                    DownPayment = input("Enter customer's down payment amount: ")
+                    ValidatedDownPayment = validate_down_payment(DownPayment)
+                    if ValidatedDownPayment:
+                        DownPayment = float(DownPayment)
+                        break
+                except ValueError:
+                    print("Invalid input. Please enter a valid number for the down payment.")
             if DownPayment > TotalCost:
                 print("Down payment can't be higher than total cost.")
             else:
