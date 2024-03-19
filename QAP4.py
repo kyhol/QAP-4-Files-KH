@@ -326,7 +326,7 @@ while True: #Below needs valdations - fixed
     print("|--------------------------------------------------------------------|")
     for claim in Claims:
         print(f"|                                                                    |")
-        print(f"|  Claim Number: {claim['Claim Number']:<4s}, Claim Date: {claim['Claim Date']:<10s}, Claim Amount: {claim['Claim Amount']:<8s} |")
+        print(f"|  Claim Number: {claim['Claim Number']:<4s}, Claim Date: {claim['Claim Date']:<10s}, Claim Amount: {claim['Claim Amount']:<8d} |")
         print(f"|                                                                    |")
     print(" --------------------------------------------------------------------") 
         
