@@ -132,8 +132,9 @@ while True: #Below needs valdations - fixed
             print("Invalid input. Please enter 'Y' or 'N'.")
 
 
-    #Set up displays if needed
-    NumCarsDsp = str(NumCars)
+
+        
+
     #Calculations
     Name = FirstName + " " + LastName    
     TotalCost = BASIC_PREMIUM + (NumCars - 1) * (BASIC_PREMIUM * DISCOUNT_ADDITIONAL_CARS)
@@ -147,7 +148,7 @@ while True: #Below needs valdations - fixed
     if LoanerCar == "Y":
         TotalCost  += NumCars * COST_LOANER_CAR_COVERAGE
         TotalExtraCost  += NumCars * COST_LOANER_CAR_COVERAGE
-
+    
 
 
     HST = TotalCost * HST_RATE
@@ -177,7 +178,27 @@ while True: #Below needs valdations - fixed
     Year = CurrentDate.year + (CurrentDate.month // 12)
     Month = 1 if CurrentDate.month == 12 else CurrentDate.month + 1
     NextMonth = datetime.datetime(Year, Month, 1).strftime("%Y-%m-%d")
-    FirstPaymentDate = NextMonth 
+    FirstPaymentDate = NextMonth
+        #Set up displays if needed
+    NumCarsDsp = str(NumCars)
+    if ExtraLiability == "Y":
+        ExtraLiabilityDSP = "Yes"
+    else: 
+        ExtraLiabilityDSP = "No"
+    if GlassCoverage == "Y":
+        GlassCoverageDSP = "Yes"
+    else: 
+        GlassCoverageDSP = "No"
+    if LoanerCar == "Y":
+        LoanerCarDSP = "Yes"
+    else: 
+        LoanerCarDSP = "No"
+    if PaymentOption == 'Down Pay':
+        PaymentOptionDsp = "Down Payment"
+    elif PaymentOption == "Full":
+        PaymentOptionDsp = "Full Payment"
+    else:
+        PaymentOptionDsp = "Monthly Payment" 
     #Display results
     print(" ---------------------------------------------------------------------")
     print(f"|                       The One Stop Insurance             *Receipt* |")
@@ -196,10 +217,10 @@ while True: #Below needs valdations - fixed
     print("|--------------------------------------------------------------------|")
     print(f"|                                                                    |")
     print(f"|                    Number of cars:         {NumCarsDsp:<4s}                    |")
-    print(f"|                    Extra Liability:        {ExtraLiability:<3s}                     |")
-    print(f"|                    Glass Coverage:         {GlassCoverage:<3s}                     |")
-    print(f"|                    Loaner Car:             {LoanerCar:<3s}                     |")
-    print(f"|                    Payment Option:         {PaymentOption:<8s}                |")
+    print(f"|                    Extra Liability:        {ExtraLiabilityDSP:<3s}                     |")
+    print(f"|                    Glass Coverage:         {GlassCoverageDSP:<3s}                     |")
+    print(f"|                    Loaner Car:             {LoanerCarDSP:<3s}                     |")
+    print(f"|                    Payment Option:         {PaymentOptionDsp:<15s}         |")
     print(f"|                                                                    |")
     print("|--------------------------------------------------------------------|")
     print("|                        Payment Information:                        |")
@@ -222,7 +243,7 @@ while True: #Below needs valdations - fixed
     print(" --------------------------------------------------------------------")
     print(f"|                           Previous Claims                          |")
     print(" --------------------------------------------------------------------")
-# HouseKeeping duties
+
         # Write the conference values to a data file called Conference.dat.
     for _ in range(4):  # Change to control no. of 'blinks'
         print('Saving claim data ...', end='\r')
@@ -237,3 +258,5 @@ while True: #Below needs valdations - fixed
     print()
     if input("Do you want to enter another customer? (Y/N): ").upper() != 'Y':
         break
+
+# HouseKeeping duties
