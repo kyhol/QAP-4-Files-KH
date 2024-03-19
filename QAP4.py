@@ -61,6 +61,64 @@ def validate_down_payment(DownPayment):
     else:
         return False, "Down payment must be a positive number."
 
+def validate_date(date_str):
+    try:
+        datetime.datetime.strptime(date_str, '%Y-%m-%d')
+        return True
+    except ValueError:
+        return False
+    
+Claims = []
+
+def get_claims(Claims):
+    print("Enter previous claim data. Type '000' in the claim number input to end.")
+    
+    while True:
+        ClaimNumber = input("Enter claim number: ")
+        if ClaimNumber == "000":
+            break
+        elif not ClaimNumber.isdigit():
+            print("Please enter a valid claim number.")
+            continue
+
+        while True:
+            ClaimDate = input("Enter claim date (YYYY-MM-DD): ")
+            if ClaimDate == "000":
+                break
+            try:
+                datetime.datetime.strptime(ClaimDate, '%Y-%m-%d')
+            except ValueError:
+                print("Invalid date format. Please enter the date in (YYYY-MM-DD) format.")
+                continue
+            else:
+                break
+
+        if ClaimDate == "000":
+            break
+        
+        while True:
+            try:
+                ClaimAmount = float(input("Enter claim amount: "))
+                ClaimAmount = round(ClaimAmount, 2)  # Round to 2 decimal places
+                break
+            except ValueError:
+                print("Please enter a valid number for claim amount.")
+                continue
+
+        # Check for duplicate claim number
+        for claim in Claims:
+            if claim['Claim Number'] == ClaimNumber:
+                print("Duplicate claim number. Please enter a different claim number.")
+                break
+        else:
+            Claims.append({'Claim Number': ClaimNumber, 'Claim Date': ClaimDate, 'Claim Amount': ClaimAmount})
+            print("Claim added successfully.")
+
+    return Claims
+
+
+
+
 # Main Program 
 
 
@@ -199,6 +257,8 @@ while True: #Below needs valdations - fixed
     Month = 1 if CurrentDate.month == 12 else CurrentDate.month + 1
     NextMonth = datetime.datetime(Year, Month, 1).strftime("%Y-%m-%d")
     FirstPaymentDate = NextMonth
+        
+    
         #Set up displays if needed
     NumCarsDsp = str(NumCars)
     if ExtraLiability == "Y":
@@ -218,10 +278,11 @@ while True: #Below needs valdations - fixed
     elif PaymentOption == "Full":
         PaymentOptionDsp = "Full Payment"
     else:
-        PaymentOptionDsp = "Monthly Payment" 
+        PaymentOptionDsp = "Monthly Payment"
+    get_claims(Claims) 
     #Display results
     print(" ---------------------------------------------------------------------")
-    print(f"|                       The One Stop Insurance             *Receipt* |")
+    print(f"|                       The One Stop Insurance        *Receipt{POLICY_NUMBER}* |")
     print("|--------------------------------------------------------------------|")
     print(f"|                        Customer Information:                       |")
     print("|--------------------------------------------------------------------|")
@@ -262,9 +323,14 @@ while True: #Below needs valdations - fixed
     print(f"|                                                                    |")
     print("|--------------------------------------------------------------------|")
     print(f"|                           Previous Claims                          |")
-    print(" --------------------------------------------------------------------")
+    print("|--------------------------------------------------------------------|")
+    for claim in Claims:
+        print(f"|                                                                    |")
+        print(f"|  Claim Number: {claim['Claim Number']:<4s}, Claim Date: {claim['Claim Date']:<10s}, Claim Amount: {claim['Claim Amount']:<8s} |")
+        print(f"|                                                                    |")
+    print(" --------------------------------------------------------------------") 
+        
 
-        # Write the conference values to a data file called Conference.dat.
     for _ in range(4):  # Change to control no. of 'blinks'
         print('Saving claim data ...', end='\r')
         time.sleep(.3)  # To create the blinking effect
