@@ -99,7 +99,7 @@ def get_claims(Claims):
         while True:
             try:
                 ClaimAmount = float(input("Enter claim amount: "))
-                ClaimAmount = round(ClaimAmount, 2)  # Round to 2 decimal places
+                ClaimAmount = FV.FDollar2(ClaimAmount)
                 break
             except ValueError:
                 print("Please enter a valid number for claim amount.")
@@ -282,7 +282,7 @@ while True: #Below needs valdations - fixed
     get_claims(Claims) 
     #Display results
     print(" ---------------------------------------------------------------------")
-    print(f"|                       The One Stop Insurance        *Receipt{POLICY_NUMBER}* |")
+    print(f"|                       The One Stop Insurance        *Receipt{POLICY_NUMBER:<5}* |")
     print("|--------------------------------------------------------------------|")
     print(f"|                        Customer Information:                       |")
     print("|--------------------------------------------------------------------|")
@@ -326,7 +326,7 @@ while True: #Below needs valdations - fixed
     print("|--------------------------------------------------------------------|")
     for claim in Claims:
         print(f"|                                                                    |")
-        print(f"|  Claim Number: {claim['Claim Number']:<4s}, Claim Date: {claim['Claim Date']:<10s}, Claim Amount: {claim['Claim Amount']:<8d} |")
+        print(f"|Claim Number: {claim['Claim Number']:<5}, Claim Date: {claim['Claim Date']:<10}, Claim Amount: {claim['Claim Amount']:<8} |")
         print(f"|                                                                    |")
     print(" --------------------------------------------------------------------") 
         
