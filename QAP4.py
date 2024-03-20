@@ -168,6 +168,7 @@ while True: #Below needs valdations - fixed
     while True:            
         PhoneNumber = input("Enter customers Phone Number: ")
         if FV.validate_phone_number(PhoneNumber):
+            PhoneNumber = str(PhoneNumber)
             break
         else:
             print("Enter a valid phone number ex:\"9999999999\"")
@@ -290,8 +291,9 @@ while True: #Below needs valdations - fixed
     print(f"|                    Name                  : {Name:<20s}    |")
     print(f"|                    Street Address        : {StAddress:<20s}    |")
     print(f"|                    City                  : {City:<20s}    |")
-    print(f"|                    Province:             : {Province:<2s}                      |")
-    print(f"|                    Postal Code:          : {PostalCode:<6s}                  |")
+    print(f"|                    Province              : {Province:<2s}                      |")
+    print(f"|                    Postal Code           : {PostalCode:<6s}                  |")
+    print(f"|                    Phone Number          : {PhoneNumber:<10s}              |")
     print(f"|                                                                    |")
     print("|--------------------------------------------------------------------|")
     print("|                              Extras:                               |")
