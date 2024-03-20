@@ -71,8 +71,9 @@ def validate_date(date_str):
 Claims = []
 
 def get_claims(Claims):
+    print()
     print("Enter previous claim data. Type '000' in the claim number input to end.")
-    
+    print()
     while True:
         ClaimNumber = input("Enter claim number: ")
         if ClaimNumber == "000":
@@ -254,10 +255,12 @@ while True: #Below needs valdations - fixed
     CurrentDate = datetime.datetime.now()
     InvoiceDate = CurrentDate.strftime("%Y-%m-%d")
     NextMonth = (CurrentDate + datetime.timedelta(days=31)).strftime("%Y-%m-%d")
-    Year = CurrentDate.year + (CurrentDate.month // 12)
+    Year = CurrentDate.year + (CurrentDate.month // 12)                                      #calculating dates
     Month = 1 if CurrentDate.month == 12 else CurrentDate.month + 1
     NextMonth = datetime.datetime(Year, Month, 1).strftime("%Y-%m-%d")
     FirstPaymentDate = NextMonth
+
+    get_claims(Claims)
         
     
         #Set up displays if needed
@@ -280,10 +283,12 @@ while True: #Below needs valdations - fixed
         PaymentOptionDsp = "Full Payment"
     else:
         PaymentOptionDsp = "Monthly Payment"
-    get_claims(Claims) 
+     
+
     #Display results
+    print()
     print(" ---------------------------------------------------------------------")
-    print(f"|                       The One Stop Insurance        *Receipt{POLICY_NUMBER:<5}* |")
+    print(f"|                       The One Stop Insurance         *Receipt{POLICY_NUMBER:<5} |")
     print("|--------------------------------------------------------------------|")
     print(f"|                        Customer Information:                       |")
     print("|--------------------------------------------------------------------|")
@@ -332,7 +337,7 @@ while True: #Below needs valdations - fixed
     for claim in Claims:
         print(f"|           {claim['Claim Number']:>5}              {claim['Claim Date']:<10}          {claim['Claim Amount']:<10}        |")
     print(" --------------------------------------------------------------------") 
-        
+    print()
 
     for _ in range(4):  # Change to control no. of 'blinks'
         print('Saving claim data ...', end='\r')
