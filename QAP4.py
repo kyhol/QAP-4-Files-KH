@@ -324,10 +324,10 @@ while True: #Below needs valdations - fixed
     print("|--------------------------------------------------------------------|")
     print(f"|                           Previous Claims                          |")
     print("|--------------------------------------------------------------------|")
+    print(f"|        Claim Number:        Claim Date:          Amount:           |")
+    print("|--------------------------------------------------------------------|")
     for claim in Claims:
-        print(f"|                                                                    |")
-        print(f"|Claim Number: {claim['Claim Number']:<5}, Claim Date: {claim['Claim Date']:<10}, Claim Amount: {claim['Claim Amount']:<8} |")
-        print(f"|                                                                    |")
+        print(f"|           {claim['Claim Number']:>5}              {claim['Claim Date']:<10}          {claim['Claim Amount']:<10}        |")
     print(" --------------------------------------------------------------------") 
         
 
