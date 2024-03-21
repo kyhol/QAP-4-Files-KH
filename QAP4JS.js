@@ -4,7 +4,7 @@
     name: "Kyle Hollett",
     birthDate: new Date(1988, 10, 29),
     gender: "Male",
-    roomPreference: ["Non-smoking", "Pets Allowed", "Room Size", "Number of Beds", "Price", "Close Amenities", "Safety and Security", "RoomCondition", "Check-in/Check-out Times", "Reviews and Ratings", "Additional Services"],
+    roomPreference: ["Non-smoking", "Pets Allowed", "Room Size", "Number of Beds", "Price", "Close Amenities", "Safety and Security", "Room Condition", "Check-in/Check-out Times", "Reviews and Ratings", "Additional Services"],
     paymentMethod: "Credit Card",
     mailingAddress: {
         street: "200 Little Johns Ave",
@@ -30,5 +30,25 @@
         const durationInMilliseconds = checkOutTime - checkInTime;
         return Math.ceil(durationInMilliseconds / millisecondsPerDay);
   } 
+  
 };
 
+const customerDescription = `Name: ${MotelCustomer.name}
+Age: ${MotelCustomer.getAge()}
+Gender: ${MotelCustomer.gender}
+Room Preferences: ${MotelCustomer.roomPreference.join(', ')}
+Payment Method: ${MotelCustomer.paymentMethod}
+Mailing Address: ${MotelCustomer.mailingAddress.street}, ${MotelCustomer.mailingAddress.city}, ${MotelCustomer.mailingAddress.province}, ${MotelCustomer.mailingAddress.country}, ${MotelCustomer.mailingAddress.postalCode}
+Phone Number: ${MotelCustomer.phoneNumber}
+Check-In Date: ${MotelCustomer.checkInDate.toDateString()}
+Check-Out Date: ${MotelCustomer.checkOutDate.toDateString()}
+Duration of Stay: ${MotelCustomer.getDurationOfStay()} days`;
+
+
+console.log(customerDescription);
+
+let roomPreferenceSentence = `This luxurious hotel offers ${MotelCustomer.roomPreference[0]} with ${MotelCustomer.roomPreference[1]}, spacious ${MotelCustomer.roomPreference[2]}s, with a ${MotelCustomer.roomPreference[3]} options, competitive ${MotelCustomer.roomPreference[4]}s, ${MotelCustomer.roomPreference[5]}, top-notch ${MotelCustomer.roomPreference[6]}, impeccable ${MotelCustomer.roomPreference[7]}s, flexible ${MotelCustomer.roomPreference[8]}, stellar ${MotelCustomer.roomPreference[9]}, and a range of ${MotelCustomer.roomPreference[10]} to enhance your stay.`
+
+console.log(roomPreferenceSentence)
+
+// This luxurious hotel offers non-smoking rooms with pets allowed, spacious room sizes, a variety of bed options, competitive prices, close amenities, top-notch safety and security, impeccable room conditions, flexible check-in/check-out times, stellar reviews and ratings, and a range of additional services to enhance your stay.

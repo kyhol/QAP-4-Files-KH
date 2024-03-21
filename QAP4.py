@@ -160,7 +160,7 @@ while True: #Below needs valdations - fixed
     Province = get_valid_province() 
 
     while True:
-        PostalCode = input("Enter customers Postal Code: ").upper()
+        PostalCode = input("Enter customers Postal Code: (X#X#X#) ").upper()
         if FV.validate_postal_code(PostalCode):
             break
         else:
@@ -203,25 +203,19 @@ while True: #Below needs valdations - fixed
         else:
             print("Invalid input. Please enter 'Y' or 'N'.")
 
-
-
-        
-
-    #Calculations
+     #Calculations
     Name = FirstName + " " + LastName    
-    TotalCost = BASIC_PREMIUM + (NumCars - 1) * (BASIC_PREMIUM * DISCOUNT_ADDITIONAL_CARS)
+    TotalCost = BASIC_PREMIUM + (int(NumCars) - 1) * (BASIC_PREMIUM * DISCOUNT_ADDITIONAL_CARS)
     TotalExtraCost = 0
     if ExtraLiability == "Y":
-        TotalCost += NumCars * COST_EXTRA_LIABILITY
-        TotalExtraCost += NumCars * COST_EXTRA_LIABILITY
+        TotalCost += int(NumCars) * COST_EXTRA_LIABILITY
+        TotalExtraCost += int(NumCars) * COST_EXTRA_LIABILITY
     if GlassCoverage == "Y":
-        TotalCost += NumCars * COST_GLASS_COVERAGE
-        TotalExtraCost += NumCars * COST_GLASS_COVERAGE
+        TotalCost += int(NumCars) * COST_GLASS_COVERAGE
+        TotalExtraCost += int(NumCars) * COST_GLASS_COVERAGE
     if LoanerCar == "Y":
-        TotalCost  += NumCars * COST_LOANER_CAR_COVERAGE
-        TotalExtraCost  += NumCars * COST_LOANER_CAR_COVERAGE
-    
-
+        TotalCost  += int(NumCars) * COST_LOANER_CAR_COVERAGE
+        TotalExtraCost  += int(NumCars) * COST_LOANER_CAR_COVERAGE
 
     HST = TotalCost * HST_RATE
     TotalCost += HST
@@ -255,10 +249,11 @@ while True: #Below needs valdations - fixed
     CurrentDate = datetime.datetime.now()
     InvoiceDate = CurrentDate.strftime("%Y-%m-%d")
     NextMonth = (CurrentDate + datetime.timedelta(days=31)).strftime("%Y-%m-%d")
-    Year = CurrentDate.year + (CurrentDate.month // 12)                                      #calculating dates
+    Year = CurrentDate.year + (CurrentDate.month // 12)
     Month = 1 if CurrentDate.month == 12 else CurrentDate.month + 1
     NextMonth = datetime.datetime(Year, Month, 1).strftime("%Y-%m-%d")
     FirstPaymentDate = NextMonth
+
 
     get_claims(Claims)
         
