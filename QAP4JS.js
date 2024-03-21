@@ -3,7 +3,7 @@
  const MotelCustomer = { //could set up as a let to change the values for new customers
     //List for MotelCustomer 
     name: "Kyle Hollett",
-    birthDate: new Date(1988, 10, 29),
+    birthDate: new Date(1988, 10, 29), //Makes a date as 1988-10-29
     gender: "Male",
     roomPreference: ["Non-smoking", "Pets Allowed", "Room Size", "Number of Beds", "Price", "Close Amenities", "Safety and Security", "Room Condition", "Check-in/Check-out Times", "Reviews and Ratings", "Additional Services"], //List for room preference 
     paymentMethod: "Credit Card",
@@ -24,7 +24,7 @@
         return age; // returns age. There is an issue with this function, as it does not account for months but I feel it's fine for this QAP
     },
 //To get the duration of stay I chose to use millisecondsperday, which brings back exact timing on the checkInDate and checkOutDate. "this." references the following object.
-//.getTime gets the the elapsed time from January 1, 1970, 00:00:00 UTC. So it gets the time from said date until whats in the checkInDate value. Then you minus eachother in the duration section to give you the time elapsed between those two dates. Math.ceil is a function that returns the smallest integer greater than or equal to a given number. It rounds a number up to the nearest whole number. It rounds the duration in milisecondsperday / milisecondsperday to a whole number. 
+//.getTime gets the the elapsed time from January 1, 1970, 00:00:00 UTC. So it gets the time from said date until whats in the checkInDate value. Then you minus eachother in the duration section to give you the time elapsed between those two dates. Math.ceil is a function that returns the smallest integer greater than or equal to a given number. It rounds a number UP to the nearest whole number. It rounds the duration in milisecondsperday / milisecondsperday UP to a whole number. 
     getDurationOfStay: function() {
         const millisecondsPerDay = 1000 * 60 * 60 * 24;
         const checkInTime = this.checkInDate.getTime();

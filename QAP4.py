@@ -341,6 +341,7 @@ while True: #Below needs valdations - fixed
         time.sleep(.3)
     print()
     print("Claim data successfully saved ...", end='\r')
+    print()
     time.sleep(1.5)  # To create the blinking effect
     sys.stdout.write('\033[2K\r')  # Clears the entire line and carriage returns
     POLICY_NUMBER += 1
