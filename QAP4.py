@@ -49,10 +49,10 @@ def calculate_monthly_payment(TotalCost, DownPayment):
     return MonthlyPayment
 
 def validate_down_payment(DownPayment):
-    if not DownPayment.strip():  # Check if the input is empty or contains only whitespace
+    if not DownPayment.strip():  # Checks if input is empty or contains blankspace
         return False, "Input cannot be empty."
     
-    if not DownPayment.replace('.', '', 2).isdigit():  # Check if the input is a number (allowing for one decimal point)
+    if not DownPayment.replace('.', '', 2).isdigit():  # Check if the input is a number (allowing for two decimal point)
         return False, "Invalid input. Please enter a valid number for the down payment."
     
     DownPayment = float(DownPayment)
@@ -126,6 +126,7 @@ def get_claims(Claims):
     #Inputs
      
 while True: #Below needs valdations - fixed
+    print()
     print("Enter customer information below:")
     print()
 
@@ -134,27 +135,26 @@ while True: #Below needs valdations - fixed
         if FV.validate_name(FirstName):
             break
         else:
-            print("Invalid input. Please enter a valid first name.")
-
+            print("Invalid input. Please enter a valid first name. Cannot contain special characters, digits or spaces. ")
     while True:
         LastName = input("Enter customer's last name: ").title()
         if FV.validate_name(LastName):
             break
         else:
-            print("Invalid input. Please enter a valid last name.")
+            print("Invalid input. Please enter a valid last name. Cannot contain special characters, digits or spaces. ")
     while True:
         StAddress = input("Enter customers street address: ").title() #Maybe validate - validated
         if FV.validate_street_address(StAddress):
             break
         else:
-            print("Invalid street address. Input valid street address")
+            print("Invalid street address. Input valid street address Example '123 Freshwater Road/rd")
     
     while True:
         City = input("Enter customers City: ").title() #Maybe validate - validated
         if FV.validate_city(City):
             break
         else: 
-            print("Invalid input. Please enter a valid city name.")
+            print("Invalid input. Please enter a valid city name. You're bein bad, you cannot include numbers or special characters.")
 
 
     Province = get_valid_province() 
@@ -345,7 +345,7 @@ while True: #Below needs valdations - fixed
     sys.stdout.write('\033[2K\r')  # Clears the entire line and carriage returns
     POLICY_NUMBER += 1
     print()
-    if input("Do you want to enter another customer? (Y/N): ").upper() != 'Y':
+    if input("Do you want to enter another customer? Enter y if you want to continue, or anything else if you want to stop.: ").upper() != 'Y':
         break
 
 # HouseKeeping duties
